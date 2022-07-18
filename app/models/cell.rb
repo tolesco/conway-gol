@@ -14,6 +14,7 @@ class Cell
 
   def live!
     @live = true
+    update_cell_in_grid
   end
 
   def dead?
@@ -22,10 +23,12 @@ class Cell
 
   def dead!
     @live = false
+    update_cell_in_grid
   end
 
   def swap!
     @live = !@live
+    update_cell_in_grid
   end
 
   def neighbours
@@ -48,5 +51,11 @@ class Cell
 
   def alive_neighbours
     neighbours.select{ |cell| cell && cell.live? }
+  end
+
+  private
+
+  def update_cell_in_grid
+    @grid.cells[[@pos_x, @pos_y]] = self
   end
 end

@@ -17,6 +17,91 @@ RSpec.describe Grid do
     end
   end
 
+  # TODO: Fix flaky tests.
+  describe '#next_step!' do
+    let(:cell) { subject.cell_at(4,4) }
+
+    context 'when cell is alive' do
+
+      before do
+        cell.live!
+        cell.alive_neighbours.each(&:dead!)
+      end
+
+      it 'maintains cells on to next step when alive neighbours population is two or three' do
+        expect(cell.live?).to be_truthy
+        expect(cell.alive_neighbours.size).to eq(0)
+        expect{
+
+          cell.neighbours.first(3).each(&:live!)
+
+        }.to change{ cell.alive_neighbours.size }.from(0).to(3)
+
+        expect{
+
+          subject.next_step!
+
+        }.not_to change{ cell.live? }
+      end
+
+      it 'kills cells by underpopulation' do
+        expect(cell.live?).to be_truthy
+        expect(cell.alive_neighbours.size).to eq(0)
+        expect{
+
+          cell.neighbours.first(1).each(&:live!)
+
+        }.to change{ cell.alive_neighbours.size }.from(0).to(1)
+
+        expect{
+
+          subject.next_step!
+
+        }.to change{ cell.live? }.from(true).to(false)
+      end
+
+      it 'kills cells by overpopulation' do
+        expect(cell.live?).to be_truthy
+        expect(cell.alive_neighbours.size).to eq(0)
+        expect{
+
+          cell.neighbours.first(4).each(&:live!)
+
+        }.to change{ cell.alive_neighbours.size }.from(0).to(4)
+
+        expect{
+
+          subject.next_step!
+
+        }.to change{ cell.live? }.from(true).to(false)
+      end
+    end
+
+    # TODO: Fix flaky test.
+    context 'when cell is dead' do
+      before do
+        cell.dead!
+        cell.alive_neighbours.each(&:dead!)
+      end
+
+      it 'revive cells by reproduction' do
+        expect(cell.dead?).to be_truthy
+        expect(cell.alive_neighbours.size).to eq(0)
+        expect{
+
+          cell.neighbours.first(3).each(&:live!)
+
+        }.to change{ cell.alive_neighbours.size }.from(0).to(3)
+
+        expect{
+
+          subject.next_step!
+
+        }.to change{ cell.live? }.from(false).to(true)
+      end
+    end
+  end
+
   describe 'validations' do
     it 'is valid with height and width values' do
       expect{
