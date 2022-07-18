@@ -2,7 +2,7 @@ require 'spec_helper'
 
 RSpec.describe Cell do
   let(:grid) { Grid.new(width: 8, height: 8) }
-  subject{ grid.cell_at(1, 1) }
+  subject{ grid.cell_at(4, 4) }
 
   describe '#live?' do
     it 'returns true if cell is alive' do
@@ -62,6 +62,22 @@ RSpec.describe Cell do
         subject.swap!
 
       }.to change{ subject.live? }.from(true).to(false)
+    end
+  end
+
+  describe '#neighbours' do
+    it 'returns the eight neighbours of the cell' do
+      expect(subject.neighbours.size).to eq(8)
+      expect(subject.neighbours.sample.class).to eq(Cell)
+    end
+  end
+
+  describe '#alive_neighbours' do
+    it 'returns the alive neighbours of the cell' do
+      subject.neighbours.each(&:dead!)
+      subject.neighbours.sample.live!
+
+      expect(subject.alive_neighbours.size).to eq(1)
     end
   end
 
