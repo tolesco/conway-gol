@@ -32,6 +32,13 @@ ruby run.rb
 ```
 The Conway's Game of Life simulation should start on your terminal.
 
+## Run RSpec tests
+
+To run the RSpec test suite type the following instruction on your terminal:
+```
+bundle exec rspec
+```
+
 ## License
 
 Distributed under the MIT License. See [LICENSE](LICENSE) for more information.
