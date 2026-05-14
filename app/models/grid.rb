@@ -13,17 +13,15 @@ class Grid
   end
 
   def next_step!
+    to_swap = []
     @width.times do |x|
       @height.times do |y|
-        cell = self.cell_at(x,y)
-        alive_neighbours = cell.alive_neighbours.size
-        if cell.live?
-          cell.swap! if alive_neighbours < 2 || alive_neighbours > 3
-        else
-          cell.swap! if alive_neighbours == 3
-        end
+        cell = cell_at(x, y)
+        n = cell.alive_neighbours.size
+        to_swap << cell if (cell.live? && (n < 2 || n > 3)) || (cell.dead? && n == 3)
       end
     end
+    to_swap.each(&:swap!)
   end
 
   private
