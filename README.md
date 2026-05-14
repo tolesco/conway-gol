@@ -2,6 +2,8 @@
 
 Conway's Game of Life implementation in Ruby. Check out the [Wikipedia article](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) for full details about GOL.
 
+<img width="782" height="737" alt="2026-05-14 14 12 51" src="https://github.com/user-attachments/assets/e107ba02-c31e-40a0-af21-e5fcc6199c0b" />
+
 ## Rules
 
 Extracted from the [Wikipedia article](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life):
