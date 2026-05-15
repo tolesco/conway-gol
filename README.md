@@ -2,7 +2,7 @@
 
 Conway's Game of Life implementation in Ruby. Check out the [Wikipedia article](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) for full details about GOL.
 
-<img width="782" height="737" alt="2026-05-14 14 12 51" src="https://github.com/user-attachments/assets/e107ba02-c31e-40a0-af21-e5fcc6199c0b" />
+<img width="391" height="368" alt="2026-05-14 14 12 51" src="https://github.com/user-attachments/assets/4bdd6d1c-ea40-4098-a4eb-4affce7ac075" />
 
 ## Rules
 
@@ -47,4 +47,4 @@ Distributed under the MIT License. See [LICENSE](LICENSE) for more information.
 
 ## Contact
 
-Francisco Rodríguez - [@tolesco](https://github.com/tolesco/) - tolesco@gmail.com
+Francisco Rodríguez - [@tolesco](https://github.com/tolesco/) - francisco@tolesco.com
